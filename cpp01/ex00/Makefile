@@ -1,7 +1,7 @@
-NAME= phonebook
+NAME= Zombie
 SRC=	main.cpp	\
-		contact.class.cpp	\
-		phonebook.class.cpp
+		Zombie.class.cpp
+
 CC= c++
 FLAG= -g -Wall -Wextra -Werror -std=c++98
 
