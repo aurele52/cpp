@@ -1,0 +1,31 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_OUTPUT_MODE	u-ctags	/u-ctags or e-ctags/
+!_TAG_PROGRAM_AUTHOR	Universal Ctags Team	//
+!_TAG_PROGRAM_NAME	Universal Ctags	/Derived from Exuberant Ctags/
+!_TAG_PROGRAM_URL	https://ctags.io/	/official site/
+!_TAG_PROGRAM_VERSION	0.0.0	//
+$(NAME)	Makefile	/^$(NAME):	$(SRC)$/;"	t
+CC	Makefile	/^CC= c++$/;"	m
+NAME	Makefile	/^NAME= phonebook$/;"	m
+SRC	Makefile	/^SRC=	main.cpp	\\$/;"	m
+all	Makefile	/^all:	$(NAME)$/;"	t
+clean	Makefile	/^clean:$/;"	t
+contact	contact.class.cpp	/^contact::contact( void )$/;"	f	class:contact
+contact	contact.class.hpp	/^class contact$/;"	c
+contact	phonebook.class.hpp	/^	contact::contact	contact[8];$/;"	m	class:phonebook	typeref:typename:contact::contact[8]
+contact_CLASS_H	contact.class.hpp	/^# define contact_CLASS_H$/;"	d
+contactnbr	phonebook.class.hpp	/^	int	contactnbr;$/;"	m	class:phonebook	typeref:typename:int
+darkestsecret	contact.class.hpp	/^	char	*darkestsecret;$/;"	m	class:contact	typeref:typename:char *
+fclean	Makefile	/^fclean: clean$/;"	t
+firstname	contact.class.hpp	/^	char	*firstname;$/;"	m	class:contact	typeref:typename:char *
+lastname	contact.class.hpp	/^	char	*lastname;$/;"	m	class:contact	typeref:typename:char *
+main	main.cpp	/^int 	main()$/;"	f	typeref:typename:int
+nickname	contact.class.hpp	/^	char	*nickname;$/;"	m	class:contact	typeref:typename:char *
+phonebook	phonebook.class.cpp	/^phonebook::phonebook( void )$/;"	f	class:phonebook
+phonebook	phonebook.class.hpp	/^class phonebook$/;"	c
+phonebook_CLASS_H	phonebook.class.hpp	/^# define phonebook_CLASS_H$/;"	d
+phonenumber	contact.class.hpp	/^	char	*phonenumber;$/;"	m	class:contact	typeref:typename:char *
+re	Makefile	/^re: fclean all$/;"	t
+~contact	contact.class.cpp	/^contact::~contact( void )$/;"	f	class:contact
+~phonebook	phonebook.class.cpp	/^phonebook::~phonebook( void )$/;"	f	class:phonebook
