@@ -26,4 +26,17 @@ int main( void )
 	delete cat;
 	delete wrong_cat;
 	delete wrong_animal;
+
+	const Animal	*lol[100];
+
+	for (int i = 0; i < 100;)
+	{
+		lol[i++] = new Dog;
+		lol[i++] = new Cat;
+	}
+	std::cout << *lol[45] << std::endl;
+	for (int i = 0; i < 100;)
+		delete lol[i++];
+		
+
 }

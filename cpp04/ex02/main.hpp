@@ -3,7 +3,6 @@
 
 #include <string>
 #include <iostream>
-#include "Brain.class.hpp"
 #include "Animal.class.hpp"
 #include "Cat.class.hpp"
 #include "Dog.class.hpp"

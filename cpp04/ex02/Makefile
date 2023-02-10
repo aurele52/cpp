@@ -1,12 +1,11 @@
 NAME= poly
 SRC=	main.cpp	\
 		Cat.class.cpp	\
-		Brain.class.cpp	\
 		Dog.class.cpp	\
 		WrongCat.class.cpp	\
-		WrongAnimal.class.cpp	
+		WrongAnimal.class.cpp	\
+		Animal.class.cpp
 CC= c++
-
 FLAG= -g -Wall -Wextra -Werror -std=c++98
 
 all:	$(NAME)

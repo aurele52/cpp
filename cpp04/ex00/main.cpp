@@ -24,6 +24,9 @@ int main( void )
 	delete animal;
 	delete dog;
 	delete cat;
+	std::cout << std::endl;
+	std::cout << std::endl;
+	std::cout << std::endl;
 	delete wrong_cat;
 	delete wrong_animal;
 }

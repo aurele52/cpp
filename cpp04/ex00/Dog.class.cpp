@@ -31,14 +31,9 @@ Dog & Dog::operator=( Dog const & rhs )
 	return (*this);
 }
 
-std::string Dog::getType( void ) const
-{
-	return (this->type);
-}
-
 void	Dog::makeSound(void) const
 {
-	std::cout << *this << std::endl;
+	std::cout << *this << " : wouaf" << std::endl;
 }
 
 Dog::~Dog( void )
@@ -52,7 +47,7 @@ Dog::~Dog( void )
 std::ostream & operator<<( std::ostream & o, Dog const & i )
 {
 
-	o << i.getType() << " : wouaf";
+	o << i.getType();
 	return (o);
 
 }

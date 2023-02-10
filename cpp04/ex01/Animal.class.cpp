@@ -46,13 +46,13 @@ Animal::~Animal( void )
 
 void	Animal::makeSound(void) const 
 {
-	std::cout << *this << std::endl;
+	std::cout << *this << " : ??????" << std::endl;
 }
 
 std::ostream & operator<<( std::ostream & o, Animal const & i )
 {
 
-	o << i.getType() <<" : ?????";
+	o << i.getType();
 	return (o);
 
 }

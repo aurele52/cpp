@@ -31,14 +31,9 @@ Cat & Cat::operator=( Cat const & rhs )
 	return (*this);
 }
 
-std::string Cat::getType( void ) const
-{
-	return (this->type);
-}
-
 void	Cat::makeSound(void) const
 {
-	std::cout << *this << std::endl;
+	std::cout << *this << " : miaou" << std::endl;
 }
 
 Cat::~Cat( void )
@@ -52,7 +47,7 @@ Cat::~Cat( void )
 std::ostream & operator<<( std::ostream & o, Cat const & i )
 {
 
-	o << i.getType() << " : miaou";
+	o << i.getType();
 	return (o);
 
 }

@@ -8,13 +8,20 @@ class Animal
 
 	public:
 
+	Animal( );
+	Animal( Animal const & src );
+	virtual ~Animal( void );
+
+	Animal & operator=( Animal const & rhs );
+	virtual std::string getType( void ) const ;
 	virtual void	makeSound(void) const = 0;
-	virtual std::string	getType(void) const = 0;
 
 	protected:
 
 	std::string	type;
 
 };
+
+std::ostream & operator<<( std::ostream & o, Animal const & i );
 
 #endif

@@ -1,6 +1,9 @@
 #include "main.hpp"
 int main( void )
 {
+	const Animal* animal = new Animal();
+	animal->makeSound(); //will output the animal sound
+	delete animal;
 	const Animal* dog = new Dog();
 	const Animal* cat = new Cat();
 
@@ -21,6 +24,9 @@ int main( void )
 	std::cout << std::endl;
 	delete dog;
 	delete cat;
+	std::cout << std::endl;
+	std::cout << std::endl;
+	std::cout << std::endl;
 	delete wrong_cat;
 	delete wrong_animal;
 }
