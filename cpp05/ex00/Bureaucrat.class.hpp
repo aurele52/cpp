@@ -18,7 +18,14 @@ class Bureaucrat
 	void	incGrade( );
 	void	decGrade( );
 	Bureaucrat & operator=( Bureaucrat const & rhs );
-
+	class GradeTooHighException: public std::exception
+	{
+		virtual const char	*what() const throw();
+	};
+	class GradeTooLowException: public std::exception
+	{
+		virtual const char	*what() const throw();
+	};
 	private:
 	const std::string _name;
 	int	_grade;
