@@ -1,11 +1,10 @@
 #include "main.hpp"
 
-
 Dog::Dog( void )
 {
 	this->type = "Dog";
-	this->brain = new Brain;
 	std::cout << "Constructor Dog Called" << std::endl;
+	this->brain = new Brain;
 	return;
 
 }
@@ -23,7 +22,7 @@ Dog::Dog( Dog const & src ) : Animal(src)
 
 }
 
-Dog & Dog::operator=( Dog const & rhs )
+Dog & Dog::operator=( Dog const &rhs )
 {
 
 	std::cout << "Assignment operator Dog Called" << std::endl;
@@ -31,6 +30,9 @@ Dog & Dog::operator=( Dog const & rhs )
 	if ( this != &rhs )
 	{
 		this->type = rhs.getType();
+		this->brain = new Brain;
+		for (int i = 0; i < 100; i++)
+			this->brain->setIdeas(i, rhs.getBrain()->getIdeas(i));
 	}
 	return (*this);
 }
@@ -42,7 +44,7 @@ Brain	*Dog::getBrain(void) const
 
 void	Dog::makeSound(void) const
 {
-	std::cout << *this << " : miaou" << std::endl;
+	std::cout << *this << " : wouaf" << std::endl;
 }
 
 Dog::~Dog( void )

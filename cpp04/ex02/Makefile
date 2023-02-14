@@ -1,6 +1,7 @@
 NAME= poly
 SRC=	main.cpp	\
 		Cat.class.cpp	\
+		Brain.class.cpp	\
 		Dog.class.cpp	\
 		WrongCat.class.cpp	\
 		WrongAnimal.class.cpp	\

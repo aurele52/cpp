@@ -1,11 +1,16 @@
 #include "main.hpp"
 int main( void )
 {
-	const Animal* animal = new Animal();
-	const Animal* dog = new Dog();
-	const Cat* cat = new Cat();
+//	const Animal* animal = new Animal();
+//	const Animal* dog = new Dog();
+//	const Cat* cat = new Cat();
 
-	Cat doug( *cat );
+	Cat doug;
+	Cat boug;
+	doug.getBrain()->setIdeas(10, "Bad");
+	boug = doug;
+	std::cout << boug.getBrain()->getIdeas(10);
+	/*
 	std::cout << std::endl;
 	std::cout << "Dog->getType [" << dog->getType() << "] " << std::endl;
 	std::cout << "Cat->getType [" << cat->getType() << "] " << std::endl;
@@ -38,6 +43,6 @@ int main( void )
 	std::cout << *lol[45] << std::endl;
 	for (int i = 0; i < 100;)
 		delete lol[i++];
-		
+	*/	
 
 }
