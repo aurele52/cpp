@@ -30,7 +30,6 @@ Cat & Cat::operator=( Cat const &rhs )
 	if ( this != &rhs )
 	{
 		this->type = rhs.getType();
-		this->brain = new Brain;
 		for (int i = 0; i < 100; i++)
 			this->brain->setIdeas(i, rhs.getBrain()->getIdeas(i));
 	}

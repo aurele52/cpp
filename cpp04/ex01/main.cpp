@@ -5,9 +5,9 @@ int main( void )
 //	const Animal* dog = new Dog();
 //	const Cat* cat = new Cat();
 
+
 	Cat doug;
 	Cat boug;
-	doug.getBrain()->setIdeas(10, "Bad");
 	boug = doug;
 	std::cout << boug.getBrain()->getIdeas(10);
 	/*
