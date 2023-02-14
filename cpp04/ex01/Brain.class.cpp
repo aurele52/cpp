@@ -5,6 +5,9 @@ Brain::Brain( void )
 {
 	this->ideas = new std::string[100]; 
 	std::cout << "Constructor brain Called" << std::endl;
+	for (int i = 0; i < 100; i++)
+		this->ideas[i] = "idea";
+
 	return;
 
 }
@@ -17,6 +20,16 @@ Brain::Brain( Brain const & src )
 
 	return;
 
+}
+
+void	Brain::setIdeas( int i , std::string to)
+{
+	this->ideas[i] = to;
+}
+
+std::string Brain::getIdeas( int i) const
+{
+	return (this->ideas[i]);
 }
 
 std::string *Brain::getIdeas( void) const

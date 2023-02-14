@@ -11,10 +11,19 @@ int	ft_isdigit(std::string str)
 }
 int	ft_checktype(std::string str)
 {
+	char	sign = 0;
+
 	if (str.length() == 1 && ft_isdigit( str ) == -1)
 		return (1);
 	if (str == "-inff" || str == "+inff" || str == "nanf" || str == "nan" || str == "-inf" || str == "+inf")
 		return (2);
+	if (str[0] == '+')
+		str.erase(0,1);
+	if (str[0] == '-')
+	{
+		sign = 1;
+		str.erase(0,1);
+	}
 	if (str[str.length() - 1] == 'f')
 	{
 		int test;
@@ -27,6 +36,8 @@ int	ft_checktype(std::string str)
 		if (ft_isdigit(str) == 1)
 		{
 			str[test] = '.';
+			if (sign == 1)
+				str.insert(0,"-");
 			return (3);
 		}
 		else
@@ -43,14 +54,138 @@ int	ft_checktype(std::string str)
 		if (ft_isdigit(str) == 1)
 		{
 			str[test] = '.';
+			if (sign == 1)
+				str.insert(0,"-");
 			return (4);
 		}
 		else
 			return (10);
 	}
-	if (ft_isdigit(str))
+	if (ft_isdigit(str) == 1)
+	{
+			if (sign == 1)
+				str.insert(0,"-");
 		return (5);
+	}
 	return (10);
+}
+
+void	ft_convspec( std::string str )
+{
+	if (str[0] == '+')
+		std::cout << "char: impossible" << std::endl << "int: impossible" << std::endl << "float: +inff"  << std::endl << "double: +inf" << std::endl;
+	if (str[0] == '-')
+		std::cout << "char: impossible" << std::endl << "int: impossible" << std::endl << "float: -inff"  << std::endl << "double: -inf" << std::endl;
+	if (str[0] == 'n')
+		std::cout << "char: impossible" << std::endl << "int: impossible" << std::endl << "float: nanf"  << std::endl << "double: nan" << std::endl;
+}
+
+#include <climits>
+
+void	ft_convfloat( const char *str )
+{
+	char **sz = 0;
+
+	double	lol = std::strtod(str, sz);
+
+	if (sz != 0)
+		std::cout << "Wrong input" << std::endl;
+	else
+	{
+		if (lol > CHAR_MIN && lol < CHAR_MAX)
+		{
+			if (lol < 32 || lol > 126)
+				std::cout << "char: no displayable" << std::endl;
+			else
+				std::cout << "char: '"<< static_cast<char>(lol) << "'" << std::endl;
+		}
+		else
+			std::cout << "char: impossible" << std::endl;
+		if (lol > INT_MIN && lol < INT_MAX)
+			std::cout << "int: "<< static_cast<int>(lol) << std::endl;
+		else
+			std::cout << "int: impossible" << std::endl;
+		std::cout << "float: "<< static_cast<float>(lol);
+		if (static_cast<float>(lol) - static_cast<int>(lol) == 0.0 && (lol < 1000000 && lol > -1000000))
+			std::cout << ".0";
+		std::cout << "f" << std::endl;
+		std::cout << "double: "<< static_cast<float>(lol);
+		if (lol - static_cast<int>(lol) == 0.0 && (lol < 1000000 && lol > -1000000))
+			std::cout << ".0";
+		std::cout << std::endl;
+	}
+}
+
+void	ft_convint( const char *str )
+{
+	char **sz = 0;
+
+	double	lol = std::strtod(str, sz);
+
+	if (sz != 0)
+		std::cout << "Wrong input" << std::endl;
+	else if (lol < INT_MIN || lol > INT_MAX)
+		std::cout << "Int Overflow" << std::endl;
+	else
+	{
+		if (lol > CHAR_MIN && lol < CHAR_MAX)
+		{
+			if (lol < 32 || lol > 126)
+				std::cout << "char: no displayable" << std::endl;
+			else
+				std::cout << "char: '"<< static_cast<char>(lol) << "'" << std::endl;
+		}
+		else
+			std::cout << "char: impossible" << std::endl;
+		std::cout << "int: "<< static_cast<int>(lol) << std::endl;
+		std::cout << "float: "<< static_cast<int>(lol) << ".0f" << std::endl;
+		std::cout << "double: "<< static_cast<int>(lol) << ".0" << std::endl;
+	}
+}
+
+void	ft_convdouble( const char *str )
+{
+	char **sz = 0;
+
+	double	lol = std::strtod(str, sz);
+
+	if (sz != 0)
+		std::cout << "Wrong input" << std::endl;
+	else
+	{
+		if (lol > CHAR_MIN && lol < CHAR_MAX)
+		{
+			if (lol < 32 || lol > 126)
+				std::cout << "char: no displayable" << std::endl;
+			else
+				std::cout << "char: '"<< static_cast<char>(lol) << "'" << std::endl;
+		}
+		else
+			std::cout << "char: impossible" << std::endl;
+		if (lol > INT_MIN && lol < INT_MAX)
+			std::cout << "int: "<< static_cast<int>(lol) << std::endl;
+		else
+			std::cout << "int: impossible" << std::endl;
+		std::cout << "float: "<< static_cast<float>(lol);
+		if (static_cast<float>(lol) - static_cast<int>(lol) == 0.0 && (lol < 1000000 && lol > -1000000))
+			std::cout << ".0";
+		std::cout << "f" << std::endl;
+		std::cout << "double: "<< lol;
+		if (lol - static_cast<int>(lol) == 0.0 && (lol < 1000000 && lol > -1000000))
+			std::cout << ".0";
+		std::cout << std::endl;
+	}
+}
+
+void	ft_convchar( std::string str )
+{
+	if (str[0] < 32 || str[0] > 126)
+		std::cout << "char: no displayable" << std::endl;
+	else
+		std::cout << "char: '" << str[0] << "'" << std::endl;
+	std::cout << "int: "<< static_cast<int>(str[0]) << std::endl;
+	std::cout << "float: "<< static_cast<int>(str[0]) << ".0f" << std::endl;
+	std::cout << "double: "<< static_cast<int>(str[0]) << ".0" << std::endl;
 }
 
 void	ft_conv(std::string str)
@@ -59,25 +194,20 @@ void	ft_conv(std::string str)
 	switch (type)
 	{
 		case 1: 
-			std::cout << "char" << std::endl;
+			ft_convchar( str );
 			break;
-//			ft_convbychar( str );
 		case  2:
-			std::cout << "spe" << std::endl;
+			ft_convspec( str );
 			break;
-//			ft_convspec( str );
 		case 3: 
-			std::cout << "float" << std::endl;
+			ft_convfloat( str.c_str() );
 			break;
-//			ft_convbyfloat( str );
 		case 4: 
-			std::cout << "double" << std::endl;
+			ft_convdouble( str.c_str() );
 			break;
-//			ft_convbydouble( str );
 		case 5: 
-			std::cout << "int" << std::endl;
+			ft_convint( str.c_str() );
 			break;
-//			ft_convbyint( str );
 		case 10: 
 			std::cout << "not a type" << std::endl;
 			break;

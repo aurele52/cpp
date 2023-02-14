@@ -15,6 +15,9 @@ Cat::Cat( Cat const & src ) : Animal(src)
 
 	std::cout << "Copy Constructor Cat Called" << std::endl;
 	*this = src;
+	this->brain = new Brain;
+	for (int i = 0; i < 100; i++)
+		this->brain->setIdeas(i, src.getBrain()->getIdeas(i));
 
 	return;
 
@@ -30,6 +33,11 @@ Cat & Cat::operator=( Cat const & rhs )
 		this->type = rhs.getType();
 	}
 	return (*this);
+}
+
+Brain	*Cat::getBrain(void) const
+{
+	return (this->brain);
 }
 
 void	Cat::makeSound(void) const

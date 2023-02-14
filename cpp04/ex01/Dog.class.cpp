@@ -1,5 +1,6 @@
 #include "main.hpp"
 
+
 Dog::Dog( void )
 {
 	this->type = "Dog";
@@ -14,6 +15,9 @@ Dog::Dog( Dog const & src ) : Animal(src)
 
 	std::cout << "Copy Constructor Dog Called" << std::endl;
 	*this = src;
+	this->brain = new Brain;
+	for (int i = 0; i < 100; i++)
+		this->brain->setIdeas(i, src.getBrain()->getIdeas(i));
 
 	return;
 
@@ -31,9 +35,14 @@ Dog & Dog::operator=( Dog const & rhs )
 	return (*this);
 }
 
+Brain	*Dog::getBrain(void) const
+{
+	return (this->brain);
+}
+
 void	Dog::makeSound(void) const
 {
-	std::cout << *this << " : wouaf" << std::endl;
+	std::cout << *this << " : miaou" << std::endl;
 }
 
 Dog::~Dog( void )

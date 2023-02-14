@@ -3,8 +3,9 @@ int main( void )
 {
 	const Animal* animal = new Animal();
 	const Animal* dog = new Dog();
-	const Animal* cat = new Cat();
+	const Cat* cat = new Cat();
 
+	Cat doug( *cat );
 	std::cout << std::endl;
 	std::cout << "Dog->getType [" << dog->getType() << "] " << std::endl;
 	std::cout << "Cat->getType [" << cat->getType() << "] " << std::endl;
