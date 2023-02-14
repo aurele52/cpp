@@ -22,6 +22,7 @@ int	main()
 		std::cout << std::endl;
 		std::cout << std::endl;
 		std::cout << std::endl;
+		delete lol;
 	}
 	catch (std::exception& error)
 	{
