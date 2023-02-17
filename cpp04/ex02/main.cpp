@@ -5,11 +5,15 @@ int main( void )
 //	const Animal* dog = new Dog();
 //	const Cat* cat = new Cat();
 
+
 	Cat doug;
+	doug.getBrain()->setIdeas(10, "bofbof");
 	Cat boug;
-	doug.getBrain()->setIdeas(10, "Bad");
 	boug = doug;
-	std::cout << boug.getBrain()->getIdeas(10);
+	Cat roug(doug);
+	std::cout << doug.getBrain()->getIdeas(10) << std::endl;
+	std::cout << boug.getBrain()->getIdeas(10) << std::endl;
+	std::cout << roug.getBrain()->getIdeas(10) << std::endl;
 	/*
 	std::cout << std::endl;
 	std::cout << "Dog->getType [" << dog->getType() << "] " << std::endl;

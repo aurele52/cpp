@@ -13,11 +13,8 @@ Cat::Cat( Cat const & src ) : Animal(src)
 {
 
 	std::cout << "Copy Constructor Cat Called" << std::endl;
-	*this = src;
 	this->brain = new Brain;
-	for (int i = 0; i < 100; i++)
-		this->brain->setIdeas(i, src.getBrain()->getIdeas(i));
-
+	*this = src;
 	return;
 
 }

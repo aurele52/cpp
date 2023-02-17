@@ -13,11 +13,8 @@ Dog::Dog( Dog const & src ) : Animal(src)
 {
 
 	std::cout << "Copy Constructor Dog Called" << std::endl;
-	*this = src;
 	this->brain = new Brain;
-	for (int i = 0; i < 100; i++)
-		this->brain->setIdeas(i, src.getBrain()->getIdeas(i));
-
+	*this = src;
 	return;
 
 }
@@ -30,7 +27,6 @@ Dog & Dog::operator=( Dog const &rhs )
 	if ( this != &rhs )
 	{
 		this->type = rhs.getType();
-		this->brain = new Brain;
 		for (int i = 0; i < 100; i++)
 			this->brain->setIdeas(i, rhs.getBrain()->getIdeas(i));
 	}
