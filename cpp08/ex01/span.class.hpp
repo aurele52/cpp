@@ -1,23 +1,31 @@
-#ifndef span_CLASS_H
-# define span_CLASS_H
+#ifndef Span_CLASS_H
+# define Span_CLASS_H
 
 #include "main.hpp"
 
-class span
+class Span
 {
 
 	public:
 
-	span( void );
-	span( span const & src );
-	~span( void );
+	Span( void );
+	Span( unsigned int sizeMax );
+	Span( Span const & src );
+	~Span( void );
 
-	span & operator=( span const & rhs );
+	Span & operator=( Span const & rhs );
+
+	void addNumber( int toAdd );
+	int	shortestSpan( void );
+	int	longestSpan( void );
+	void	addByIteratorRange( std::vector<int>::iterator begin, std::vector<int>::iterator end);
 
 	private:
+	std::vector<int>	_stock;
+	unsigned int _sizeMax;
 
 };
 
-std::ostream & operator<<( std::ostream & o, span const & i );
+std::ostream & operator<<( std::ostream & o, Span const & i );
 
 #endif

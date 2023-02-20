@@ -1,7 +1,7 @@
 #include "main.hpp"
 
 
-span::span( void )
+Span::Span( void ) : _SizeMax(0)
 {
 
 	std::cout << "Constructor Called" << std::endl;
@@ -9,7 +9,15 @@ span::span( void )
 
 }
 
-span::span( span const & src )
+Span::Span( unsigned int lol ) : _SizeMax(lol)
+{
+
+	std::cout << "Constructor Called" << std::endl;
+	return;
+
+}
+
+Span::Span( Span const & src )
 {
 
 	std::cout << "Copy Constructor Called" << std::endl;
@@ -19,19 +27,19 @@ span::span( span const & src )
 
 }
 
-span & span::operator=( span const & rhs )
+Span & Span::operator=( Span const & rhs )
 {
 
 	std::cout << "Assignment operator Called" << std::endl;
 
 	if ( this != &rhs )
 	{
-	this-> = rhs.get();
+		this->_sizeMax = rhs._sizeMax;
 	}
 	return (*this);
 }
 
-span::~span( void )
+Span::~Span( void )
 {
 
 	std::cout << "Destructor Called" << std::endl;
@@ -39,7 +47,7 @@ span::~span( void )
 
 }
 
-std::ostream & operator<<( std::ostream & o, span const & i )
+std::ostream & operator<<( std::ostream & o, Span const & i )
 {
 
 	o << i.get()
