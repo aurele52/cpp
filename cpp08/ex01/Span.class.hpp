@@ -16,11 +16,15 @@ class Span
 	Span & operator=( Span const & rhs );
 
 	void addNumber( int toAdd );
-	int	shortestSpan( void );
-	int	longestSpan( void );
+	int	shortestSpan( void ) const;
+	int	longestSpan( void )const;
 	void	addByIteratorRange( std::vector<int>::iterator begin, std::vector<int>::iterator end);
+	std::vector<int>	getStock(void) const;
+	unsigned int getSizeMax( void ) const;
+	
 
 	private:
+
 	std::vector<int>	_stock;
 	unsigned int _sizeMax;
 

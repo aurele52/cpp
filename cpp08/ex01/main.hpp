@@ -3,5 +3,9 @@
 
 #include <string>
 #include <iostream>
+#include <algorithm>
+#include <vector>
+#include <iterator>
+#include "Span.class.hpp"
 
 #endif
