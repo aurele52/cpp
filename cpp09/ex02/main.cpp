@@ -1,4 +1,5 @@
 #include "main.hpp"
+int	ft_search(std::vector<float>::iterator deb, std::vector<float>::iterator fin, float act);
 
 int	main(int argc, char **argv)
 {
@@ -10,9 +11,13 @@ int	main(int argc, char **argv)
 		{
 				lol.add(argv[i]);
 		}
-		while (lol.getVector().size() != 8)
+		while (lol.getVector().size() != 32)
 			lol.addnan();
 		lol.pairsort( 0 );
+//		std::vector<float> qwe = lol.getVector();
+//		ft_search(qwe.begin(), qwe.begin() + 4 - 1, 1);
+//		lol.moveback(1, 0);
+//			std::cout << "i = "<< i  << " ou = " << ou << std::endl;
 		std::cout << lol << std::endl;
 	}
 	catch (std::exception & e)

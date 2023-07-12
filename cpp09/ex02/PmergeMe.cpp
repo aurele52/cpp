@@ -9,38 +9,22 @@ PmergeMe::PmergeMe( void ) : _vector()
 
 }
 
-int	ft_search(std::vector<float>::iterator deb, std::vector<float>::iterator fin, float act)
+int ft_search(float element, std::vector<float>::iterator deb, int size, std::vector<float>::iterator end)
 {
-	std::vector<float>::iterator mem = deb;
-	
-	int size;
-	std::vector<float>::iterator	moitier;
-
-//	std::cout << "deb = "<< *deb  << " fin = " << *fin << std::endl;
-	if (deb == fin)
-		return (1);
-	size = fin - deb;
-	while (size < 1)
+	if (size == 1)
 	{
-		size = fin - deb;
-		moitier = deb + size / 2;
-		if (*moitier < act)
-		{
-			deb = moitier;
-		}
-		else if (*moitier > act)
-		{
-			fin = moitier;
-		}
+		if (element <= *deb)
+			return (0);
 		else
-		{
-			deb = moitier;
-			fin = moitier;
-		}
-		std::cout << size << std::endl;
+			return (1);
 	}
-	return (fin - mem + 1);
-	
+	int moitier = size / 2;
+//	std::cout << "moitier =" << moitier << std::endl;
+	if (end <= (deb + moitier))
+		return (1);
+	if (element <= *(deb + moitier))
+		return (ft_search(element, deb, moitier, end));
+	return (moitier + ft_search(element, deb + moitier, size, end));
 }
 
 void	PmergeMe::moveback( int lol, int back)
@@ -57,8 +41,8 @@ void	PmergeMe::pairsort( int step )
 {
 	step = step + 1;
 	int	i = 0;
-	int	size = 8;
-	while (i < size / pow(2, step))
+	int	size = _vector.size();
+	while (!isnan(_vector[i]) && i < size / pow(2, step))
 	{
 		if (_vector[i] < _vector[i + size / pow(2, step)])
 		{
@@ -82,15 +66,19 @@ void	PmergeMe::pairsort( int step )
 	int	ou;
 	while (i < size / pow(2, step - 1))
 	{
-		ou = i - ft_search(_vector.begin(), _vector.begin() + i - 1, _vector[i]);
-		int test = 0;
-	//	std::cout << "test = " << test << " size / pow(2, step) = " << size / pow(2, step) << std::endl;
-		while (test < size / (pow(2, step)))
+		if (!isnan(_vector[i]))
 		{
-			std::cout << *this << std::endl;
-			this->moveback(i + test * size / pow(2, step - 1), ou);
-//			std::cout << "i = "<< i  << " ou = " << ou << std::endl;
-			test++;
+			int test = 0;
+			ou = i - ft_search(_vector[i], _vector.begin(), i, _vector.end());
+//			std::cout << "test = " << test << " size / pow(2, step) = " << size / pow(2, step) << std::endl;
+			while (test < (pow(2, step - 1)))
+			{
+//				std::cout << "test " << test  << " pow(2, step - 1) " << pow(2, step - 1) << std::endl;
+				std::cout << "pre = "<< *this << std::endl;
+				this->moveback(i + test * size / pow(2, step - 1), ou);
+				std::cout << "post = "<< *this << std::endl;
+				test++;
+			}
 		}
 		i++;
 	}
@@ -164,9 +152,12 @@ std::ostream & operator<<( std::ostream & o, PmergeMe const & i )
 	std::vector<float> lol = i.getVector();
 	for (std::vector<float>::iterator it = lol.begin(); it != lol.end(); it++)
 	{
-		o << *it;
-		if (it + 1 != lol.end())
-			o << " ";
+//		if (!isnan(*it))
+//		{
+			o << *it;
+			if (it + 1 != lol.end())
+				o << " ";
+//		}
 	}
 	return (o);
 
