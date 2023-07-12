@@ -9,46 +9,92 @@ PmergeMe::PmergeMe( void ) : _vector()
 
 }
 
+int	ft_search(std::vector<float>::iterator deb, std::vector<float>::iterator fin, float act)
+{
+	std::vector<float>::iterator mem = deb;
+	
+	int size;
+	std::vector<float>::iterator	moitier;
+
+//	std::cout << "deb = "<< *deb  << " fin = " << *fin << std::endl;
+	if (deb == fin)
+		return (1);
+	size = fin - deb;
+	while (size < 1)
+	{
+		size = fin - deb;
+		moitier = deb + size / 2;
+		if (*moitier < act)
+		{
+			deb = moitier;
+		}
+		else if (*moitier > act)
+		{
+			fin = moitier;
+		}
+		else
+		{
+			deb = moitier;
+			fin = moitier;
+		}
+		std::cout << size << std::endl;
+	}
+	return (fin - mem + 1);
+	
+}
+
+void	PmergeMe::moveback( int lol, int back)
+{
+	while (back)
+	{
+		std::swap(_vector[lol], _vector[lol - 1]);
+		lol--;
+		back--;
+	}
+}
+
 void	PmergeMe::pairsort( int step )
 {
 	step = step + 1;
 	int	i = 0;
-	int	size = 4;
+	int	size = 8;
 	while (i < size / pow(2, step))
 	{
 		if (_vector[i] < _vector[i + size / pow(2, step)])
-			std::swap(_vector[i], _vector[i + size / pow(2, step)]);
+		{
+			int test = 0;
+			while (test < (pow(2, step - 1)))
+			{
+				std::swap(_vector[i + test * size / pow(2, step - 1)], _vector[i + size / pow(2, step) + test * size / pow(2, step - 1)]);
+				test++;
+			}
+		}
 		i++;
 	}
-	step++;
+	
+	std::cout << "avant " << *this << std::endl;
 	if  (pow(2, step) < size)
 		this->pairsort( step );
-	int j = 0;
-	i = 0;
-	std::cout << step << std::endl;
-	while (j < size / pow(2, step))
+	std::cout << "mid " << *this << std::endl;
+//	const int jacobstal {1, 3, 5, 11, 21, 43}
+//	int ijacobstal = 0;
+	i = size / pow(2, step);
+	int	ou;
+	while (i < size / pow(2, step - 1))
 	{
-		while (i < size / pow(2, step))
+		ou = i - ft_search(_vector.begin(), _vector.begin() + i - 1, _vector[i]);
+		int test = 0;
+	//	std::cout << "test = " << test << " size / pow(2, step) = " << size / pow(2, step) << std::endl;
+		while (test < size / (pow(2, step)))
 		{
-			int a = i;
-			int b = j;
-			if (_vector[j] < _vector[j])
-			{
-				while (a < size)
-				{
-					std::swap(_vector[a], _vector[b]);
-					a = a + size / pow(2, step);
-					b = b + size / pow(2, step);
-				}
-			}
-
-			i++;
+			std::cout << *this << std::endl;
+			this->moveback(i + test * size / pow(2, step - 1), ou);
+//			std::cout << "i = "<< i  << " ou = " << ou << std::endl;
+			test++;
 		}
-		j++;
-		i = j + 1;
+		i++;
 	}
-	std::cout << *this << std::endl;
-
+	std::cout << "fin " << *this << std::endl;
 }
 
 void	PmergeMe::add(char *str)

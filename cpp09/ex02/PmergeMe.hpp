@@ -13,6 +13,7 @@ class PmergeMe
 	~PmergeMe( void );
 	std::vector<float> getVector( void ) const;
 	std::vector<float> getVector( void );
+	void	moveback( int lol, int back);
 	void	add(char *str);
 	void	addnan( void );
 	void	pairsort( int step );
