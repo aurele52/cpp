@@ -11,19 +11,15 @@ int	main(int argc, char **argv)
 		{
 				lol.add(argv[i]);
 		}
-		while (lol.getVector().size() != 32)
+//		std::cout << "before = " << lol << std::endl;
+		while (lol.getVector().size() != 2048 * 2 * 2)
 			lol.addnan();
 		lol.pairsort( 0 );
-//		std::vector<float> qwe = lol.getVector();
-//		ft_search(qwe.begin(), qwe.begin() + 4 - 1, 1);
-//		lol.moveback(1, 0);
-//			std::cout << "i = "<< i  << " ou = " << ou << std::endl;
-		std::cout << lol << std::endl;
+		lol.issort();
+//		std::cout << "after = " << lol << std::endl;
 	}
 	catch (std::exception & e)
 	{
 		std::cout << e.what() << std::endl;
 	}
-	//double
-
 }

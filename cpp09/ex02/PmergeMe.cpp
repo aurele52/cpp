@@ -1,15 +1,14 @@
 #include "main.hpp"
 
 
-PmergeMe::PmergeMe( void ) : _vector()
+PmergeMe::PmergeMe( void ) : _vector(), _realnbr(0)
 {
 
-	std::cout << "Constructor Called" << std::endl;
 	return;
 
 }
 
-int ft_search(float element, std::vector<float>::iterator deb, int size, std::vector<float>::iterator end)
+int ft_search(float element, std::vector<float>::iterator deb, int size)
 {
 	if (size == 1)
 	{
@@ -18,13 +17,16 @@ int ft_search(float element, std::vector<float>::iterator deb, int size, std::ve
 		else
 			return (1);
 	}
-	int moitier = size / 2;
-//	std::cout << "moitier =" << moitier << std::endl;
-	if (end <= (deb + moitier))
-		return (1);
-	if (element <= *(deb + moitier))
-		return (ft_search(element, deb, moitier, end));
-	return (moitier + ft_search(element, deb + moitier, size, end));
+	int half = size / 2;
+	if (element <= *(deb + half))
+	{
+		int mem = ft_search(element, deb, half);
+//		std::cout << "1 " << mem << std::endl;
+		return (mem);
+	}
+	int mem = half + ft_search(element, deb + half, half + 1);
+//	std::cout << "2 " << mem << std::endl;
+	return (mem);
 }
 
 void	PmergeMe::moveback( int lol, int back)
@@ -55,36 +57,44 @@ void	PmergeMe::pairsort( int step )
 		}
 		i++;
 	}
-	
-	std::cout << "avant " << *this << std::endl;
 	if  (pow(2, step) < size)
 		this->pairsort( step );
-	std::cout << "mid " << *this << std::endl;
-//	const int jacobstal {1, 3, 5, 11, 21, 43}
+//	std::cout << "mid " << *this << std::endl;	
+//	const int jacobstal[23] = {1, 3, 3, 3, 5, 5, 5, 5, 5, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 21, 43};
 //	int ijacobstal = 0;
 	i = size / pow(2, step);
+//	i = i + jacobstal[ijacobstal];
 	int	ou;
 	while (i < size / pow(2, step - 1))
 	{
 		if (!isnan(_vector[i]))
 		{
 			int test = 0;
-			ou = i - ft_search(_vector[i], _vector.begin(), i, _vector.end());
-//			std::cout << "test = " << test << " size / pow(2, step) = " << size / pow(2, step) << std::endl;
-			while (test < (pow(2, step - 1)))
+			ou = i - ft_search(_vector[i], _vector.begin(), i);
+//			std::cout << "ou " << ou << i - ou << std::endl;	
+			while (test < (pow(2, step - 1)) && !isnan(_vector[i + test * size / pow(2, step - 1)]))
 			{
-//				std::cout << "test " << test  << " pow(2, step - 1) " << pow(2, step - 1) << std::endl;
-				std::cout << "pre = "<< *this << std::endl;
+//				std::cout << "pre " << *this << std::endl;	
 				this->moveback(i + test * size / pow(2, step - 1), ou);
-				std::cout << "post = "<< *this << std::endl;
+//				std::cout << "post " << *this << std::endl;	
 				test++;
 			}
 		}
 		i++;
+		//ijacobstal++;
+		//i = i + jacobstal[ijacobstal];
 	}
-	std::cout << "fin " << *this << std::endl;
+//	std::cout << "fin " << *this << std::endl;	
 }
 
+void	PmergeMe::issort( void )
+{
+	for (std::vector<float>::iterator it = _vector.begin(); it != _vector.end(); it++)
+	{
+		if (it != _vector.begin() && *(it - 1) > *(it))
+			std::cout << "error" << std::endl;
+	}
+}
 void	PmergeMe::add(char *str)
 {
 	std::istringstream lol(str);
@@ -100,6 +110,7 @@ void	PmergeMe::add(char *str)
 	if (lol.fail())
 		throw std::invalid_argument("Invalid argument");
 	this->_vector.push_back(a);
+	_realnbr++;
 }
 
 void	PmergeMe::addnan( void )
@@ -127,6 +138,11 @@ std::vector<float> PmergeMe::getVector( void ) const
 	return (_vector);
 }
 
+int PmergeMe::getRealnbr( void ) const
+{
+	return (_realnbr);
+}
+
 PmergeMe & PmergeMe::operator=( PmergeMe const & rhs )
 {
 
@@ -142,22 +158,35 @@ PmergeMe & PmergeMe::operator=( PmergeMe const & rhs )
 PmergeMe::~PmergeMe( void )
 {
 
-	std::cout << "Destructor Called" << std::endl;
 	return;
 
 }
 
 std::ostream & operator<<( std::ostream & o, PmergeMe const & i )
 {
+	int re= 0;
 	std::vector<float> lol = i.getVector();
 	for (std::vector<float>::iterator it = lol.begin(); it != lol.end(); it++)
 	{
-//		if (!isnan(*it))
-//		{
-			o << *it;
-			if (it + 1 != lol.end())
-				o << " ";
-//		}
+		int qwe;
+		int re1=i.getRealnbr();
+		if (!isnan(*it) || re < re1)
+		{
+			if (isnan(*it))
+			{
+				o << *it;
+				if (it + 1 != lol.end())
+					o << " ";
+			}
+			else
+			{
+				re++;
+				qwe = *it;
+				o << qwe;
+				if (it + 1 != lol.end())
+					o << " ";
+			}
+		}
 	}
 	return (o);
 
