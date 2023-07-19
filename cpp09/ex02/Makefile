@@ -4,7 +4,6 @@ SRC=	main.cpp	\
 CC= c++
 FLAGS= -g -Wall -Wextra -Werror -std=c++98
 OBJ=$(SRC:.cpp=.o)
-INC= main.hpp
 .cpp.o:
 	$(CC) $(FLAGS) -c $< -o $(<:.cpp=.o)
 
