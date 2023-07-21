@@ -6,7 +6,7 @@ int	main(int argc, char **argv)
 	PmergeMe	lol;
 	PmergeMe	lol2;
 
-	if (argc == 1 || argc > 3002)
+	if (argc == 1 || argc > 20000)
 	{
 		std::cout << "Invalid number of argument" << std::endl;
 		return (1);
@@ -18,7 +18,7 @@ int	main(int argc, char **argv)
 				lol.add(argv[i]);
 		}
 		std::cout << "before = " << lol << std::endl;
-		while (lol.getVector().size() != 2048 * 2 * 2)
+		while (lol.getVector().size() != 2048 * 2 * 2 * 2 * 2 * 2)
 			lol.addnan();
 		std::clock_t c_start = std::clock();
 		lol.pairsort( 0 );
@@ -34,7 +34,7 @@ int	main(int argc, char **argv)
 		std::cout << "before = ";
 		lol2.printDeque();
 		std::cout << std::endl;
-		while (lol2.getDeque().size() != 2048 * 2 * 2)
+		while (lol2.getDeque().size() != 2048 * 2 * 2 * 2 * 2 * 2)
 			lol2.addnan2();
 		c_start = std::clock();
 		lol2.pairsort2( 0 );
