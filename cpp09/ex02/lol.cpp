@@ -7,16 +7,12 @@ int main()
 	int lol = j;
 	int mem = j;
 	std::cout << i << " ";
-	while (i < 6000)
+	while (i < 600000)
 	{
 		mem = j;
 		j = 2 * i + j;
 		i = mem;
 		lol = j;
-		while (lol > i)
-		{
-			std::cout << j << ", ";
-			lol--;
-		}
+		std::cout << lol - i << ", ";
 	}
 }

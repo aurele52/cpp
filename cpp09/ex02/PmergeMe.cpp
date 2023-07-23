@@ -1,4 +1,5 @@
 #include "PmergeMe.hpp"
+#define JACOB  1, 2, 2, 6, 10, 22, 42, 86, 170, 342, 682, 1366, 2730, 5462, 10922, 21846, 43690, 87382, 174762, 349526, 699050
 
 PmergeMe::PmergeMe( void ) : _deque(), _vector(), _realnbr(0)
 {
@@ -20,11 +21,11 @@ int ft_search2(float element, std::deque<float>::iterator deb, int size)
 	if (element <= *(deb + half))
 	{
 		int mem = ft_search2(element, deb, half);
-//		std::cout << "1 " << mem << std::endl;
+		std::cout << "1 " << mem << std::endl;
 		return (mem);
 	}
 	int mem = half + ft_search2(element, deb + half, half + 1);
-//	std::cout << "2 " << mem << std::endl;
+	std::cout << "2 " << mem << std::endl;
 	return (mem);
 }
 
@@ -58,32 +59,51 @@ void	PmergeMe::pairsort2( int step )
 	}
 	if  (pow(2, step) < size)
 		this->pairsort2( step );
-//	std::cout << "mid " << *this << std::endl;	
-//	const int jacobstal[23] = {1, 3, 3, 3, 5, 5, 5, 5, 5, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 21, 43};
-//	int ijacobstal = 0;
-	i = size / pow(2, step);
-//	i = i + jacobstal[ijacobstal];
+	std::cout << "mid ";
+	this->printDeque();
+	std::cout << std::endl;	
+	const int diffjacobstal[22] = {JACOB};
+	i = 0;
+	int nans = 0;
+	std::deque<float>::iterator ptr = _deque.begin() + size / pow(2, step) - 1;
 	int	ou;
-	while (i < size / pow(2, step - 1))
+	int add = 0;
+	int diff;
+	ptr = _deque.begin() + size / pow(2, step) - 1;
+	int insert = 0;
+	while (insert < size / pow(2, step))
 	{
-		if (!isnan(_deque[i]))
+		diff = diffjacobstal[add];
+		ptr = ptr + diff;
+		while (diff--)
 		{
-			int test = 0;
-			ou = i - ft_search2(_deque[i], _deque.begin(), i);
-//			std::cout << "ou " << ou << i - ou << std::endl;	
-			while (test < (pow(2, step - 1)) && !isnan(_deque[i + test * size / pow(2, step - 1)]))
+			if (ptr - _deque.begin() >= size / pow(2, step - 1))
 			{
-//				std::cout << "pre " << *this << std::endl;	
-				this->moveback2(i + test * size / pow(2, step - 1), ou);
-//				std::cout << "post " << *this << std::endl;	
-				test++;
+				ptr--;
+			}
+			else if (isnan(*ptr))
+			{
+				insert++;
+				nans++;
+				ptr--;
+			}
+			else
+			{
+				insert++;
+				std::cout << *ptr << std::endl;
+				int test = 0;
+				ou = ptr - _deque.begin() - ft_search2(_deque[ptr - _deque.begin()], _deque.begin(), ptr - _deque.begin());
+				while (test < (pow(2, step - 1)) && !isnan(_deque[ptr - _deque.begin() + test * size / pow(2, step - 1)]))
+				{
+					this->moveback2(ptr - _deque.begin() + test * size / pow(2, step - 1), ou);
+					test++;
+				}
 			}
 		}
-		i++;
-		//ijacobstal++;
-		//i = i + jacobstal[ijacobstal];
+		add++;
+		ptr = ptr + nans;
+		nans = 0;
 	}
-//	std::cout << "fin " << *this << std::endl;	
 }
 
 void	PmergeMe::issort2( void )

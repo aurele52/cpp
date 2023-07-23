@@ -13,6 +13,7 @@ int	main(int argc, char **argv)
 	}
 	try
 	{
+	/*
 		for (int i = 1; i < argc; i++)
 		{
 				lol.add(argv[i]);
@@ -27,6 +28,7 @@ int	main(int argc, char **argv)
 		std::cout << "time = " << ret << std::endl;
 		lol.issort();
 		std::cout << "after = " << lol << std::endl;
+		*/
 		for (int i = 1; i < argc; i++)
 		{
 				lol2.add2(argv[i]);
@@ -34,13 +36,13 @@ int	main(int argc, char **argv)
 		std::cout << "before = ";
 		lol2.printDeque();
 		std::cout << std::endl;
-		while (lol2.getDeque().size() != 2048 * 2 * 2 * 2 * 2 * 2)
+		while (lol2.getDeque().size() != 16)
 			lol2.addnan2();
-		c_start = std::clock();
+//		c_start = std::clock();
 		lol2.pairsort2( 0 );
-		c_end = std::clock();
-		ret = 1000.0 * static_cast<double>(c_end - c_start) / CLOCKS_PER_SEC;
-		std::cout << "time = " << ret << std::endl;
+//		c_end = std::clock();
+//		ret = 1000.0 * static_cast<double>(c_end - c_start) / CLOCKS_PER_SEC;
+//		std::cout << "time = " << ret << std::endl;
 		lol2.issort2();
 		std::cout << "after = ";
 		lol2.printDeque();
